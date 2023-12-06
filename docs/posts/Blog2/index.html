@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Sandhya Vinukonda">
+<meta name="dcterms.date" content="2023-12-06">
 
-<title>Blog101 - Machine Learning Blogs</title>
+<title>Blog101 - Blog 2 : Clustering</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,24 +25,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -61,50 +61,19 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Blog101</span>
     </a>
   </div>
@@ -115,7 +84,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html" rel="" target="">
+    <a class="nav-link" href="../../about.html" rel="" target="">
  <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
@@ -138,236 +107,78 @@ ul.task-list li input[type="checkbox"] {
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page-left">
-      <h1 class="title">Machine Learning Blogs</h1>
-                      </div>
+    <div class="quarto-title column-body">
+      <h1 class="title">Blog 2 : Clustering</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">Machine Learning</div>
+                <div class="quarto-category">Unsupervised Learning</div>
+              </div>
+                  </div>
   </div>
     
   
   <div class="quarto-title-meta">
 
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Sandhya Vinukonda </p>
+            </div>
+    </div>
       
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">December 6, 2023</p>
+      </div>
+    </div>
     
       
     </div>
     
   
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(5)</span></div><div class="category" data-category="Anomaly Detection">Anomaly Detection <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Machine Learning">Machine Learning <span class="quarto-category-count">(4)</span></div><div class="category" data-category="Outlier Analysis">Outlier Analysis <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Probability">Probability <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Regression Analysis">Regression Analysis <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Statistics">Statistics <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Supervised Learning">Supervised Learning <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Unsupervised Learning">Unsupervised Learning <span class="quarto-category-count">(1)</span></div></div></div>
+    
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
+<p>Let’s talk about a fascinating part of machine learning and unsupervised learning. In this world, there’s a standout technique known as clustering, where we work with data that doesn’t come pre-labeled. Instead, we group similar data points into clusters based on common traits or patterns. This blog will take you through the basics of clustering, its types, and zoom in on two popular clustering buddies: K Means and Hierarchical Clustering.</p>
+<p>Understanding Clustering:</p>
+<p>Clustering is like a detective trying to find hidden connections in a bunch of clues (data points). The cool thing is, no one is telling the detective what to look for – the algorithm figures it out on its own.</p>
+<p><img src="Clustering_Soft_Hard.png" class="img-fluid"></p>
+<p>Types of Clustering:</p>
+<p>Hard Clustering:</p>
+<p>Imagine putting each data point into one exclusive group. That’s hard clustering for you. Classic example: K Means.</p>
+<p>Soft Clustering:</p>
+<p>Now, think of data points being chill and belonging to multiple groups with varying levels of closeness. That’s soft clustering. Fuzzy C-Means is a soft clustering star.</p>
+<p>Different Clustering Models:</p>
+<p><img src="Clustering_models.png" class="img-fluid"></p>
+<p>Connectivity Models: These algorithms look at how close data points are to each other. Example: Hierarchical Clustering.</p>
+<p>Centroid Models: These focus on the center points of clusters. K Means is a big player here.</p>
+<p>Distribution Models: Assume that data points follow a common pattern. Think of Gaussian Mixture Models (GMM).</p>
+<p>Density Models: These spot clusters based on where data points crowd up. A famous one is DBSCAN.</p>
+<p>Prominent Clustering Algorithms: K Means Clustering: It’s like dividing data into clubs based on the average characteristics of each group. Simple and efficient – a go-to for many.</p>
+<p>Hierarchical Clustering: This one builds a family tree of clusters, like tracing your ancestry. It’s cool because it allows for nested or overlapping groups.</p>
+<p>Difference Between K Means and Hierarchical Clustering: Here’s the lowdown on how K Means and Hierarchical Clustering differ:</p>
+<p>Nature of Clusters: K Means makes clear-cut groups with no sharing allowed. Hierarchical Clustering creates a family tree where groups can overlap or nest.</p>
+<p>Number of Clusters: K Means needs to know how many groups you want before it starts. Hierarchical Clustering is more flexible – it generates a tree, and you can decide how many groups later.</p>
+<p>Computation Complexity: K Means is quicker with the calculations, good for big datasets. Hierarchical Clustering can take more time, especially with lots of data. Conclusion: In the unsupervised learning world, clustering is like a superhero revealing hidden patterns in data without anyone giving it a roadmap. Knowing the ins and outs of clustering, the different types, and the quirks of K Means and Hierarchical Clustering gives you a powerful toolkit for finding the stories hidden in your data. As technology races forward, the possibilities for unsupervised learning and clustering are endless, promising discoveries in fields from healthcare to finance.</p>
+<p>Let’s Start Coding</p>
+<p><img src="KMeans_StepsOfCode.png" class="img-fluid"></p>
+<ol type="1">
+<li><p>Import Libraries</p></li>
+<li><p>Read data and clean it</p></li>
+<li><p>Model : K Means</p></li>
+</ol>
 
 
 
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="Probability,Statistics" data-listing-date-sort="1701838800000" data-listing-file-modified-sort="1701894515727" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6">
-<div class="thumbnail">
-<p><a href="./posts/Blog1/index.html"> <p class="card-img-top"><img src="posts\Blog1\image.jpg"  class="thumbnail-image card-img"/></p> </a></p>
-</div>
-<div class="body">
-<a href="./posts/Blog1/index.html">
-<h3 class="no-anchor listing-title">
-Blog 1 : Probability theory and random variables
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Probability'); return false;">
-Probability
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Statistics'); return false;">
-Statistics
-</div>
-</div>
-<a href="./posts/Blog1/index.html">
-<div class="listing-description">
-In the intricate landscape of data analysis, outliers emerge as the unconventional elements that refuse to conform. These peculiar data points, standing out from the crowd…
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/Blog1/index.html">
-<div class="listing-date">
-Dec 6, 2023
-</div>
-<div class="listing-author">
-Sandhya Vinukonda
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="Machine Learning,Unsupervised Learning" data-listing-date-sort="1701838800000" data-listing-file-modified-sort="1701896151893" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3">
-<div class="thumbnail">
-<p><a href="./posts/Blog2/index.html"> <p class="card-img-top"><img src="posts\Blog2\Clustering_Soft_Hard.png"  class="thumbnail-image card-img"/></p> </a></p>
-</div>
-<div class="body">
-<a href="./posts/Blog2/index.html">
-<h3 class="no-anchor listing-title">
-Blog 2 : Clustering
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Machine Learning'); return false;">
-Machine Learning
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Unsupervised Learning'); return false;">
-Unsupervised Learning
-</div>
-</div>
-<a href="./posts/Blog2/index.html">
-<div class="listing-description">
-Let’s talk about a fascinating part of machine learning and unsupervised learning. In this world, there’s a standout technique known as clustering, where we work with data…
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/Blog2/index.html">
-<div class="listing-date">
-Dec 6, 2023
-</div>
-<div class="listing-author">
-Sandhya Vinukonda
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="Machine Learning,Regression Analysis" data-listing-date-sort="1701838800000" data-listing-file-modified-sort="1701891909747" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5">
-<div class="thumbnail">
-<p><a href="./posts/Blog3/index.html"> <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div> </a></p>
-</div>
-<div class="body">
-<a href="./posts/Blog3/index.html">
-<h3 class="no-anchor listing-title">
-Blog 3 : Linear and nonlinear regression
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Machine Learning'); return false;">
-Machine Learning
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Regression Analysis'); return false;">
-Regression Analysis
-</div>
-</div>
-<a href="./posts/Blog3/index.html">
-<div class="listing-description">
-Introduction: In the dynamic world of Machine Learning, where predictions and decisions guide intelligent systems, Regression emerges as a powerful technique for…
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/Blog3/index.html">
-<div class="listing-date">
-Dec 6, 2023
-</div>
-<div class="listing-author">
-Sandhya Vinukonda
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="Machine Learning,Supervised Learning" data-listing-date-sort="1701838800000" data-listing-file-modified-sort="1701895883082" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4">
-<div class="thumbnail">
-<p><a href="./posts/Blog4/index.html"> <p class="card-img-top"><img src="posts\Blog4\Supervised_Learning.png"  class="thumbnail-image card-img"/></p> </a></p>
-</div>
-<div class="body">
-<a href="./posts/Blog4/index.html">
-<h3 class="no-anchor listing-title">
-Blog 4 : Classification
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Machine Learning'); return false;">
-Machine Learning
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Supervised Learning'); return false;">
-Supervised Learning
-</div>
-</div>
-<a href="./posts/Blog4/index.html">
-<div class="listing-description">
-What does Classification do ?
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/Blog4/index.html">
-<div class="listing-date">
-Dec 6, 2023
-</div>
-<div class="listing-author">
-Sandhya Vinukonda
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-categories="Machine Learning,Anomaly Detection,Outlier Analysis" data-listing-date-sort="1701838800000" data-listing-file-modified-sort="1701896753929" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6">
-<div class="thumbnail">
-<p><a href="./posts/Blog5/index.html"> <p class="card-img-top"><img src="posts\Blog5\Outliers.png"  class="thumbnail-image card-img"/></p> </a></p>
-</div>
-<div class="body">
-<a href="./posts/Blog5/index.html">
-<h3 class="no-anchor listing-title">
-Blog 5 : Anomaly/Outliers Detection
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Machine Learning'); return false;">
-Machine Learning
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Anomaly Detection'); return false;">
-Anomaly Detection
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Outlier Analysis'); return false;">
-Outlier Analysis
-</div>
-</div>
-<a href="./posts/Blog5/index.html">
-<div class="listing-description">
-In the intricate landscape of data analysis, outliers emerge as the unconventional elements that refuse to conform. These peculiar data points, standing out from the crowd…
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/Blog5/index.html">
-<div class="listing-date">
-Dec 6, 2023
-</div>
-<div class="listing-author">
-Sandhya Vinukonda
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

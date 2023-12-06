@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Sandhya Vinukonda">
+<meta name="dcterms.date" content="2023-12-06">
 
-<title>Blog101 - Machine Learning Blogs</title>
+<title>Blog101 - Blog 5 : Anomaly/Outliers Detection</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,24 +25,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -61,50 +61,19 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Blog101</span>
     </a>
   </div>
@@ -115,7 +84,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html" rel="" target="">
+    <a class="nav-link" href="../../about.html" rel="" target="">
  <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
@@ -138,236 +107,86 @@ ul.task-list li input[type="checkbox"] {
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page-left">
-      <h1 class="title">Machine Learning Blogs</h1>
-                      </div>
+    <div class="quarto-title column-body">
+      <h1 class="title">Blog 5 : Anomaly/Outliers Detection</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">Machine Learning</div>
+                <div class="quarto-category">Anomaly Detection</div>
+                <div class="quarto-category">Outlier Analysis</div>
+              </div>
+                  </div>
   </div>
     
   
   <div class="quarto-title-meta">
 
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Sandhya Vinukonda </p>
+            </div>
+    </div>
       
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">December 6, 2023</p>
+      </div>
+    </div>
     
       
     </div>
     
   
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(5)</span></div><div class="category" data-category="Anomaly Detection">Anomaly Detection <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Machine Learning">Machine Learning <span class="quarto-category-count">(4)</span></div><div class="category" data-category="Outlier Analysis">Outlier Analysis <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Probability">Probability <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Regression Analysis">Regression Analysis <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Statistics">Statistics <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Supervised Learning">Supervised Learning <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Unsupervised Learning">Unsupervised Learning <span class="quarto-category-count">(1)</span></div></div></div>
+    
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
+<p>In the intricate landscape of data analysis, outliers emerge as the unconventional elements that refuse to conform. These peculiar data points, standing out from the crowd, can introduce significant distortions to the overall dataset. Whether stemming from errors, inconsistencies, or simply unique observations, managing outliers becomes a pivotal step in the process of data cleaning and preprocessing. This careful curation ensures that our analytical endeavors are built upon trustworthy and representative data.</p>
+<p>The Significance of Outlier Detection:</p>
+<p>Think of outlier detection as playing detective with our dataset. During the crucial phases of cleaning and preprocessing, where we address missing values and pinpoint outliers, it’s imperative to contextualize our actions. The decision to remove outliers should be influenced by the specific use case, as blindly discarding data points may not always align with the broader objectives. The ultimate aim is to bolster our model’s performance when faced with new or unseen data. <img src="Outliers.png" class="img-fluid"></p>
+<p>Strategies for Outlier Detection:</p>
+<p><img src="Outliers_Detection.png" class="img-fluid"></p>
+<ol type="1">
+<li>Using Standard Deviation: An approach grounded in setting limits based on standard deviations. Lower Limit: μ - 3σ, Upper Limit: μ + 3σ. Any data point beyond this range is flagged as an outlier. This method relies on the assumption that 99.7% of data falls within three standard deviations.</li>
+<li>Using Z-score: Standard deviation is a metric of variance, i.e., how much the individual data points are spread out from the mean. In statistics, if a data distribution is approximately normal, then about 68% of the data values lie within one standard deviation of the mean and about 95% are within two standard deviations, and about 99.7% lie within three standard deviations. The Z-score is the signed number of standard deviations by which the value of an observation or data point is above the mean value of what is being observed or measured. The intuition behind the Z-score is to describe any data point by finding its relationship with the Standard Deviation and Mean of the group of data points. Z-score is finding the distribution of data where mean is 0 and standard deviation is 1, i.e., normal distribution. You must be wondering how this helps in identifying the outliers. While calculating the Z-score, we re-scale and center the data and look for data points that are too far from zero. These data points, which are way too far from zero, will be treated as the outliers. In most cases, a threshold of 3 or -3 is used, i.e., if the Z-score value is greater than or less than 3 or -3, respectively, that data point will be identified as an outlier. This technique assumes a Gaussian distribution of the data. The outliers are the data points that are in the tails of the distribution and therefore far from the mean. How far depends on a set threshold for the normalized data points calculated with the formula:</li>
+</ol>
+<p>An outlier is then a normalized data point that has an absolute value greater than z(thr). That is |z(score)| &gt; z(thr). Commonly used Z(thr) values are 2.5, 3.0, and 3.5. Here we will be using 3.0. For example, I’ll take up the Medical Cost Personal Datasets for explaining the Z-Score method.This technique assumes a Gaussian distribution of the data.</p>
+<ol start="3" type="1">
+<li>Using IQR (Interquartile Range):</li>
+</ol>
+<p>The concept of the Interquartile Range (IQR) is used to build the boxplot graphs. IQR is a concept in statistics that is used to measure the statistical dispersion and data variability by dividing the dataset into quartiles.In simple words, any dataset or any set of observations is divided into four defined intervals based upon the values of the data and how they compare to the entire dataset. A quartile is what divides the data into three points and four intervals.It is the difference between the third quartile and the first quartile (IQR = Q3 - Q1). Outliers in this case are defined as the observations that are below (Q1−1.5×IQR) or above (Q3+1.5×IQR) or boxplot lower whisker or above boxplot upper whisker. It can be visually represented by the box plot.</p>
+<p>Focused on the central 50% of data. Outliers are identified outside the range[q25−1.5×IQR,q75+1.5×IQR]</p>
+<p><img src="Outliers_Boxplot.png" class="img-fluid"> https://www.kdnuggets.com/2019/11/understanding-boxplots.html</p>
+<ol start="4" type="1">
+<li>Using Percentile:Leveraging percentiles to isolate outliers outside the interquartile range.Outliers are discarded if they stray beyond the confines of [q25−1.5×IQR,q75+1.5×IQR]. In the intricate dance of data analysis, the ability to detect and navigate outliers is akin to mastering a subtle art. Employing techniques such as standard deviation, z-score, IQR, and percentiles empowers us to pinpoint and manage anomalies with finesse. The choice of method is nuanced, guided by the unique characteristics of the dataset and the specific demands of the analysis. By embracing the challenge of outlier detection, we fortify our data’s integrity, ensuring it stands resilient and poised for insightful revelations. More Content: Outliers can have many causes, such as: Measurement or input error. Data corruption. True outlier observation. There is no precise way to define and identify outliers in general because of the specifics of each dataset. Instead, you, or a domain expert, must interpret the raw observations and decide whether a value is an outlier or not. Nevertheless, we can use statistical methods to identify observations that appear to be rare or unlikely given the available data. This does not mean that the values identified are outliers and should be removed. A good tip is to consider plotting the identified outlier values, perhaps in the context of non-outlier values to see if there are any systematic relationships or patterns to the outliers.</li>
+</ol>
+<p>Types of Outliers:</p>
+<p>Outliers can be of two types:</p>
+<ol type="1">
+<li>Univariate</li>
+<li>Multivariate.</li>
+</ol>
+<p>Univariate outliers can be found when we look at the distribution of a single variable. Multivariate outliers are outliers in an n-dimensional space. In order to find them, you have to look at distributions in multi-dimensions. Let us understand this with an example. Let’s say we are understanding the relationship between height and weight. Below, we have univariate and bivariate distribution for Height and Weight. Take a look at the box plot. We do not have any outliers (above and below 1.5 * IQR, a common method). Now look at the scatter plot. Here, we have two values below and one above the average in a specific segment of weight and height.</p>
+<p>Impact of Outliers on a Dataset: Outliers can drastically change the results of data analysis and statistical modeling. There are numerous unfavorable impacts of outliers in the dataset: It increases the error variance and reduces the power of statistical tests. If the outliers are non-randomly distributed, they can decrease normality. They can bias or influence estimates that may be of substantive interest. They can also impact the basic assumption of Regression, ANOVA, and other statistical model assumptions. To understand the impact deeply, let’s take an example to check what happens to a dataset with and without outliers in the dataset.</p>
+<p>Code : For percentile 1. Import all the libraries 2. Load and clean the dataset 3. Finding the percentile 4. Visualization</p>
+<p>For Standard Deviation Download the dataset from : https://www.kaggle.com/datasets/spscientist/students-performance-in-exams</p>
+<ol type="1">
+<li>Import libraries</li>
+<li>Read the dataset</li>
+<li>Standard deviation</li>
+<li>Visualization</li>
+</ol>
 
 
 
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="Probability,Statistics" data-listing-date-sort="1701838800000" data-listing-file-modified-sort="1701894515727" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6">
-<div class="thumbnail">
-<p><a href="./posts/Blog1/index.html"> <p class="card-img-top"><img src="posts\Blog1\image.jpg"  class="thumbnail-image card-img"/></p> </a></p>
-</div>
-<div class="body">
-<a href="./posts/Blog1/index.html">
-<h3 class="no-anchor listing-title">
-Blog 1 : Probability theory and random variables
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Probability'); return false;">
-Probability
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Statistics'); return false;">
-Statistics
-</div>
-</div>
-<a href="./posts/Blog1/index.html">
-<div class="listing-description">
-In the intricate landscape of data analysis, outliers emerge as the unconventional elements that refuse to conform. These peculiar data points, standing out from the crowd…
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/Blog1/index.html">
-<div class="listing-date">
-Dec 6, 2023
-</div>
-<div class="listing-author">
-Sandhya Vinukonda
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="Machine Learning,Unsupervised Learning" data-listing-date-sort="1701838800000" data-listing-file-modified-sort="1701896151893" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3">
-<div class="thumbnail">
-<p><a href="./posts/Blog2/index.html"> <p class="card-img-top"><img src="posts\Blog2\Clustering_Soft_Hard.png"  class="thumbnail-image card-img"/></p> </a></p>
-</div>
-<div class="body">
-<a href="./posts/Blog2/index.html">
-<h3 class="no-anchor listing-title">
-Blog 2 : Clustering
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Machine Learning'); return false;">
-Machine Learning
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Unsupervised Learning'); return false;">
-Unsupervised Learning
-</div>
-</div>
-<a href="./posts/Blog2/index.html">
-<div class="listing-description">
-Let’s talk about a fascinating part of machine learning and unsupervised learning. In this world, there’s a standout technique known as clustering, where we work with data…
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/Blog2/index.html">
-<div class="listing-date">
-Dec 6, 2023
-</div>
-<div class="listing-author">
-Sandhya Vinukonda
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="Machine Learning,Regression Analysis" data-listing-date-sort="1701838800000" data-listing-file-modified-sort="1701891909747" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5">
-<div class="thumbnail">
-<p><a href="./posts/Blog3/index.html"> <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div> </a></p>
-</div>
-<div class="body">
-<a href="./posts/Blog3/index.html">
-<h3 class="no-anchor listing-title">
-Blog 3 : Linear and nonlinear regression
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Machine Learning'); return false;">
-Machine Learning
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Regression Analysis'); return false;">
-Regression Analysis
-</div>
-</div>
-<a href="./posts/Blog3/index.html">
-<div class="listing-description">
-Introduction: In the dynamic world of Machine Learning, where predictions and decisions guide intelligent systems, Regression emerges as a powerful technique for…
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/Blog3/index.html">
-<div class="listing-date">
-Dec 6, 2023
-</div>
-<div class="listing-author">
-Sandhya Vinukonda
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="Machine Learning,Supervised Learning" data-listing-date-sort="1701838800000" data-listing-file-modified-sort="1701895883082" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4">
-<div class="thumbnail">
-<p><a href="./posts/Blog4/index.html"> <p class="card-img-top"><img src="posts\Blog4\Supervised_Learning.png"  class="thumbnail-image card-img"/></p> </a></p>
-</div>
-<div class="body">
-<a href="./posts/Blog4/index.html">
-<h3 class="no-anchor listing-title">
-Blog 4 : Classification
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Machine Learning'); return false;">
-Machine Learning
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Supervised Learning'); return false;">
-Supervised Learning
-</div>
-</div>
-<a href="./posts/Blog4/index.html">
-<div class="listing-description">
-What does Classification do ?
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/Blog4/index.html">
-<div class="listing-date">
-Dec 6, 2023
-</div>
-<div class="listing-author">
-Sandhya Vinukonda
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-categories="Machine Learning,Anomaly Detection,Outlier Analysis" data-listing-date-sort="1701838800000" data-listing-file-modified-sort="1701896753929" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6">
-<div class="thumbnail">
-<p><a href="./posts/Blog5/index.html"> <p class="card-img-top"><img src="posts\Blog5\Outliers.png"  class="thumbnail-image card-img"/></p> </a></p>
-</div>
-<div class="body">
-<a href="./posts/Blog5/index.html">
-<h3 class="no-anchor listing-title">
-Blog 5 : Anomaly/Outliers Detection
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Machine Learning'); return false;">
-Machine Learning
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Anomaly Detection'); return false;">
-Anomaly Detection
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Outlier Analysis'); return false;">
-Outlier Analysis
-</div>
-</div>
-<a href="./posts/Blog5/index.html">
-<div class="listing-description">
-In the intricate landscape of data analysis, outliers emerge as the unconventional elements that refuse to conform. These peculiar data points, standing out from the crowd…
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/Blog5/index.html">
-<div class="listing-date">
-Dec 6, 2023
-</div>
-<div class="listing-author">
-Sandhya Vinukonda
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

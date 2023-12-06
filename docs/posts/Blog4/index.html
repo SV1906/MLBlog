@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Sandhya Vinukonda">
+<meta name="dcterms.date" content="2023-12-06">
 
-<title>Blog101 - Machine Learning Blogs</title>
+<title>Blog101 - Blog 4 : Classification</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,24 +25,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -61,50 +61,19 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Blog101</span>
     </a>
   </div>
@@ -115,7 +84,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html" rel="" target="">
+    <a class="nav-link" href="../../about.html" rel="" target="">
  <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
@@ -138,236 +107,89 @@ ul.task-list li input[type="checkbox"] {
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page-left">
-      <h1 class="title">Machine Learning Blogs</h1>
-                      </div>
+    <div class="quarto-title column-body">
+      <h1 class="title">Blog 4 : Classification</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">Machine Learning</div>
+                <div class="quarto-category">Supervised Learning</div>
+              </div>
+                  </div>
   </div>
     
   
   <div class="quarto-title-meta">
 
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Sandhya Vinukonda </p>
+            </div>
+    </div>
       
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">December 6, 2023</p>
+      </div>
+    </div>
     
       
     </div>
     
   
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(5)</span></div><div class="category" data-category="Anomaly Detection">Anomaly Detection <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Machine Learning">Machine Learning <span class="quarto-category-count">(4)</span></div><div class="category" data-category="Outlier Analysis">Outlier Analysis <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Probability">Probability <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Regression Analysis">Regression Analysis <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Statistics">Statistics <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Supervised Learning">Supervised Learning <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Unsupervised Learning">Unsupervised Learning <span class="quarto-category-count">(1)</span></div></div></div>
+    
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
+<p>What does Classification do ?</p>
+<p>The primary objective in supervised learning is to teach the model to predict the correct label or outcome for a given input. The model learns patterns and relationships in the training data, associating specific features with their corresponding labels.The training process involves exposing the model to the labeled training data, allowing it to adjust its internal parameters to make accurate predictions. Once trained, the model is then tested on new, unseen data (test data) to evaluate its generalization capabilities.The effectiveness of the supervised learning method is assessed by measuring its accuracy on the test data. Accuracy is calculated by comparing the model’s predictions with the actual labels in the test set. This provides insights into how well the model performs on previously unseen examples.</p>
+<p><img src="Supervised_Learning.png" class="img-fluid"></p>
+<p>In supervised learning, where we already know the correct answers, there are two main flavors: classification and regression. The key factor in deciding which one to use is the nature of the label data. If your label data consists of continuous values, then it’s a regression task. Take predicting house prices as an example – here, the goal is to estimate a continuous value based on features like square footage, location, and the number of bedrooms.On the flip side, if your task involves predicting categorical outcomes, like whether a student will be accepted into a specific university or not, then it’s a classification problem. In this scenario, the label data has distinct categories (admitted or not admitted), making it suitable for a classification approach.So, whether you’re dealing with predicting prices or university admissions, understanding if your label data is continuous or categorical guides you in choosing between regression and classification for your supervised learning journey.</p>
+<p>Eager Learners: Eager learners proactively build a model from a training dataset before making predictions. They invest more time during the training process to generalize better by learning the weights and relationships within the data. Once the model is trained, making predictions is relatively quicker. Examples: Logistic Regression: A widely-used algorithm for binary and multiclass classification. It models the probability of a certain class. Support Vector Machine (SVM): Efficiently classifies data points by finding the optimal hyperplane that separates different classes. Decision Trees: Tree-like models that make decisions based on features at each node, suitable for classification and regression. Artificial Neural Networks (ANN): Complex models inspired by the human brain, composed of interconnected nodes that process information in layers.</p>
+<p>Lazy Learners (Instance-Based Learners): Characteristics:</p>
+<p>Lazy learners don’t construct a model immediately; they memorize the training data. During prediction, they dynamically search for the nearest neighbor from the entire training dataset. This approach can be slower during prediction but adapts well to changes in the dataset. Examples:</p>
+<p>K-Nearest Neighbor (KNN): Classifies data points based on the majority class of their k-nearest neighbors. Case-Based Reasoning: Makes predictions based on past cases, comparing the current problem to previously solved ones. Understanding these distinctions helps in choosing the right algorithm based on the characteristics of the dataset and the specific requirements of the problem at hand. Eager and lazy learners offer different trade-offs in terms of training time, prediction speed, and adaptability to changes in the dataset.</p>
+<p><img src="Classifcation_Types.png" class="img-fluid"></p>
+<p>Types of Classifications : 1. Binary : 0/1, spam and not spam, yes and no, negative and positive. Example : (long) 2. Multi-class classification Example (one-vs-rest and one-vs-one) 3. Multi-label classification 4. Imbalanced classification</p>
+<p>Let’s get to coding!</p>
+<p>Classification takes place when the target variable is discrete. When a target variable isn’t discrete, then regression takes place for the continuous varible.</p>
+<p>Types of classification in ML :</p>
+<p>Let’s Start Coding</p>
+<p><img src="LR_StepsOfCode.png" class="img-fluid"></p>
+<p>Let’s look at a Machine Learning code example that shows binary classification of Blood Transfusion Service Centre.</p>
+<p>Before we start coding let’s download the data and understand it. Go to link : https://archive.ics.uci.edu/dataset/176/blood+transfusion+service+center and click on download. About Data : This study focuses on the critical role of blood transfusions in saving lives, addressing the challenges of maintaining an adequate blood supply for medical needs. The research employs the RFMTC marketing model, a modified version of RFM, using the donor database of the Blood Transfusion Service Center in Hsin-Chu City, Taiwan. The study randomly selects 748 donors and gathers data on Recency, Frequency, Monetary contribution, Time, and a binary variable indicating blood donation in March 2007. This dataset forms the basis for building an RFMTC model to enhance understanding and prediction in blood donation patterns.</p>
+<p>Let’s start coding : 1. Import Libraries</p>
+<p>code</p>
+<ol start="2" type="1">
+<li>Read data and clean it</li>
+</ol>
+<p>code</p>
+<ol start="3" type="1">
+<li>Visualization of the data</li>
+</ol>
+<p>code</p>
+<ol start="4" type="1">
+<li>Splitting data into train and test</li>
+</ol>
+<p>code</p>
+<ol start="5" type="1">
+<li>Model : Logistic Regression</li>
+</ol>
+<p>code</p>
+<ol start="6" type="1">
+<li>Evaluate the model</li>
+</ol>
+<p>code</p>
 
 
 
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="Probability,Statistics" data-listing-date-sort="1701838800000" data-listing-file-modified-sort="1701894515727" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6">
-<div class="thumbnail">
-<p><a href="./posts/Blog1/index.html"> <p class="card-img-top"><img src="posts\Blog1\image.jpg"  class="thumbnail-image card-img"/></p> </a></p>
-</div>
-<div class="body">
-<a href="./posts/Blog1/index.html">
-<h3 class="no-anchor listing-title">
-Blog 1 : Probability theory and random variables
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Probability'); return false;">
-Probability
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Statistics'); return false;">
-Statistics
-</div>
-</div>
-<a href="./posts/Blog1/index.html">
-<div class="listing-description">
-In the intricate landscape of data analysis, outliers emerge as the unconventional elements that refuse to conform. These peculiar data points, standing out from the crowd…
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/Blog1/index.html">
-<div class="listing-date">
-Dec 6, 2023
-</div>
-<div class="listing-author">
-Sandhya Vinukonda
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="Machine Learning,Unsupervised Learning" data-listing-date-sort="1701838800000" data-listing-file-modified-sort="1701896151893" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3">
-<div class="thumbnail">
-<p><a href="./posts/Blog2/index.html"> <p class="card-img-top"><img src="posts\Blog2\Clustering_Soft_Hard.png"  class="thumbnail-image card-img"/></p> </a></p>
-</div>
-<div class="body">
-<a href="./posts/Blog2/index.html">
-<h3 class="no-anchor listing-title">
-Blog 2 : Clustering
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Machine Learning'); return false;">
-Machine Learning
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Unsupervised Learning'); return false;">
-Unsupervised Learning
-</div>
-</div>
-<a href="./posts/Blog2/index.html">
-<div class="listing-description">
-Let’s talk about a fascinating part of machine learning and unsupervised learning. In this world, there’s a standout technique known as clustering, where we work with data…
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/Blog2/index.html">
-<div class="listing-date">
-Dec 6, 2023
-</div>
-<div class="listing-author">
-Sandhya Vinukonda
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="Machine Learning,Regression Analysis" data-listing-date-sort="1701838800000" data-listing-file-modified-sort="1701891909747" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5">
-<div class="thumbnail">
-<p><a href="./posts/Blog3/index.html"> <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div> </a></p>
-</div>
-<div class="body">
-<a href="./posts/Blog3/index.html">
-<h3 class="no-anchor listing-title">
-Blog 3 : Linear and nonlinear regression
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Machine Learning'); return false;">
-Machine Learning
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Regression Analysis'); return false;">
-Regression Analysis
-</div>
-</div>
-<a href="./posts/Blog3/index.html">
-<div class="listing-description">
-Introduction: In the dynamic world of Machine Learning, where predictions and decisions guide intelligent systems, Regression emerges as a powerful technique for…
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/Blog3/index.html">
-<div class="listing-date">
-Dec 6, 2023
-</div>
-<div class="listing-author">
-Sandhya Vinukonda
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="Machine Learning,Supervised Learning" data-listing-date-sort="1701838800000" data-listing-file-modified-sort="1701895883082" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4">
-<div class="thumbnail">
-<p><a href="./posts/Blog4/index.html"> <p class="card-img-top"><img src="posts\Blog4\Supervised_Learning.png"  class="thumbnail-image card-img"/></p> </a></p>
-</div>
-<div class="body">
-<a href="./posts/Blog4/index.html">
-<h3 class="no-anchor listing-title">
-Blog 4 : Classification
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Machine Learning'); return false;">
-Machine Learning
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Supervised Learning'); return false;">
-Supervised Learning
-</div>
-</div>
-<a href="./posts/Blog4/index.html">
-<div class="listing-description">
-What does Classification do ?
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/Blog4/index.html">
-<div class="listing-date">
-Dec 6, 2023
-</div>
-<div class="listing-author">
-Sandhya Vinukonda
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-categories="Machine Learning,Anomaly Detection,Outlier Analysis" data-listing-date-sort="1701838800000" data-listing-file-modified-sort="1701896753929" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6">
-<div class="thumbnail">
-<p><a href="./posts/Blog5/index.html"> <p class="card-img-top"><img src="posts\Blog5\Outliers.png"  class="thumbnail-image card-img"/></p> </a></p>
-</div>
-<div class="body">
-<a href="./posts/Blog5/index.html">
-<h3 class="no-anchor listing-title">
-Blog 5 : Anomaly/Outliers Detection
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Machine Learning'); return false;">
-Machine Learning
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Anomaly Detection'); return false;">
-Anomaly Detection
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Outlier Analysis'); return false;">
-Outlier Analysis
-</div>
-</div>
-<a href="./posts/Blog5/index.html">
-<div class="listing-description">
-In the intricate landscape of data analysis, outliers emerge as the unconventional elements that refuse to conform. These peculiar data points, standing out from the crowd…
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/Blog5/index.html">
-<div class="listing-date">
-Dec 6, 2023
-</div>
-<div class="listing-author">
-Sandhya Vinukonda
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
