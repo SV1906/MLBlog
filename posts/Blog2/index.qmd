@@ -1,0 +1,84 @@
+---
+title: "Blog 2 : Clustering "
+author: "Sandhya Vinukonda"
+date: "2023-12-06"
+categories: [Machine Learning, Unsupervised Learning]
+# jupyter: python3
+---
+
+Let's talk about a fascinating part of machine learning and unsupervised learning. In this world, there's a standout technique known as clustering, where we work with data that doesn't come pre-labeled. Instead, we group similar data points into clusters based on common traits or patterns. This blog will take you through the basics of clustering, its types, and zoom in on two popular clustering buddies: K Means and Hierarchical Clustering.
+
+Understanding Clustering:
+
+Clustering is like a detective trying to find hidden connections in a bunch of clues (data points). The cool thing is, no one is telling the detective what to look for – the algorithm figures it out on its own.
+
+![](Clustering_Soft_Hard.png)
+
+Types of Clustering:
+
+Hard Clustering:
+
+Imagine putting each data point into one exclusive group. That's hard clustering for you.
+Classic example: K Means.
+
+Soft Clustering:
+
+Now, think of data points being chill and belonging to multiple groups with varying levels of closeness. That's soft clustering.
+Fuzzy C-Means is a soft clustering star.
+
+Different Clustering Models:
+ 
+ ![](Clustering_models.png)
+
+Connectivity Models:
+These algorithms look at how close data points are to each other.
+Example: Hierarchical Clustering.
+
+Centroid Models:
+These focus on the center points of clusters.
+K Means is a big player here.
+
+Distribution Models:
+Assume that data points follow a common pattern.
+Think of Gaussian Mixture Models (GMM).
+
+Density Models:
+These spot clusters based on where data points crowd up.
+A famous one is DBSCAN.
+
+Prominent Clustering Algorithms:
+K Means Clustering:
+It's like dividing data into clubs based on the average characteristics of each group.
+Simple and efficient – a go-to for many.
+
+Hierarchical Clustering:
+This one builds a family tree of clusters, like tracing your ancestry.
+It's cool because it allows for nested or overlapping groups.
+
+Difference Between K Means and Hierarchical Clustering:
+Here's the lowdown on how K Means and Hierarchical Clustering differ:
+
+Nature of Clusters:
+K Means makes clear-cut groups with no sharing allowed.
+Hierarchical Clustering creates a family tree where groups can overlap or nest.
+
+Number of Clusters:
+K Means needs to know how many groups you want before it starts.
+Hierarchical Clustering is more flexible – it generates a tree, and you can decide how many groups later.
+
+Computation Complexity:
+K Means is quicker with the calculations, good for big datasets.
+Hierarchical Clustering can take more time, especially with lots of data.
+Conclusion:
+In the unsupervised learning world, clustering is like a superhero revealing hidden patterns in data without anyone giving it a roadmap. Knowing the ins and outs of clustering, the different types, and the quirks of K Means and Hierarchical Clustering gives you a powerful toolkit for finding the stories hidden in your data. As technology races forward, the possibilities for unsupervised learning and clustering are endless, promising discoveries in fields from healthcare to finance.
+
+Let’s Start Coding 
+
+![](KMeans_StepsOfCode.png)
+
+1. Import Libraries 
+
+2. Read data and clean it 
+
+3. Model : K Means 
+

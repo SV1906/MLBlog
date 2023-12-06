@@ -1,0 +1,89 @@
+---
+title: "Blog 1 : Probability theory and random variables"
+author: "Sandhya Vinukonda"
+date: "2023-12-06"
+categories: [Probability,Statistics]
+# jupyter: python3
+---
+
+![](image.jpg) 
+
+In the intricate landscape of data analysis, outliers emerge as the unconventional elements that refuse to conform. These peculiar data points, standing out from the crowd, can introduce significant distortions to the overall dataset. Whether stemming from errors, inconsistencies, or simply unique observations, managing outliers becomes a pivotal step in the process of data cleaning and preprocessing. This careful curation ensures that our analytical endeavors are built upon trustworthy and representative data.
+
+The Significance of Outlier Detection:
+
+Think of outlier detection as playing detective with our dataset. During the crucial phases of cleaning and preprocessing, where we address missing values and pinpoint outliers, it's imperative to contextualize our actions. The decision to remove outliers should be influenced by the specific use case, as blindly discarding data points may not always align with the broader objectives. The ultimate aim is to bolster our model's performance when faced with new or unseen data.
+IMAGE 
+
+Strategies for Outlier Detection:
+IMAGE 
+
+1. Using Standard Deviation:
+An approach grounded in setting limits based on standard deviations.
+Lower Limit: μ - 3σ, Upper Limit: μ + 3σ.
+Any data point beyond this range is flagged as an outlier.
+This method relies on the assumption that 99.7% of data falls within three standard deviations.
+2. Using Z-score:
+Standard deviation is a metric of variance, i.e., how much the individual data points are spread out from the mean. In statistics, if a data distribution is approximately normal, then about 68% of the data values lie within one standard deviation of the mean and about 95% are within two standard deviations, and about 99.7% lie within three standard deviations.
+The Z-score is the signed number of standard deviations by which the value of an observation or data point is above the mean value of what is being observed or measured.
+The intuition behind the Z-score is to describe any data point by finding its relationship with the Standard Deviation and Mean of the group of data points. Z-score is finding the distribution of data where mean is 0 and standard deviation is 1, i.e., normal distribution.
+You must be wondering how this helps in identifying the outliers. While calculating the Z-score, we re-scale and center the data and look for data points that are too far from zero. These data points, which are way too far from zero, will be treated as the outliers. In most cases, a threshold of 3 or -3 is used, i.e., if the Z-score value is greater than or less than 3 or -3, respectively, that data point will be identified as an outlier.
+This technique assumes a Gaussian distribution of the data. The outliers are the data points that are in the tails of the distribution and therefore far from the mean. How far depends on a set threshold for the normalized data points calculated with the formula: 
+
+An outlier is then a normalized data point that has an absolute value greater than z(thr). That is |z(score)| > z(thr). Commonly used Z(thr) values are 2.5, 3.0, and 3.5. Here we will be using 3.0. For example, I'll take up the Medical Cost Personal Datasets for explaining the Z-Score method.This technique assumes a Gaussian distribution of the data.
+
+3. Using IQR (Interquartile Range):
+
+The concept of the Interquartile Range (IQR) is used to build the boxplot graphs. IQR is a concept in statistics that is used to measure the statistical dispersion and data variability by dividing the dataset into quartiles.In simple words, any dataset or any set of observations is divided into four defined intervals based upon the values of the data and how they compare to the entire dataset. A quartile is what divides the data into three points and four intervals.It is the difference between the third quartile and the first quartile (IQR = Q3 - Q1). Outliers in this case are defined as the observations that are below (Q1−1.5×IQR) or above (Q3+1.5×IQR) or boxplot lower whisker or above boxplot upper whisker. It can be visually represented by the box plot.
+
+Focused on the central 50% of data.
+Outliers are identified outside the range[q25−1.5×IQR,q75+1.5×IQR]
+4. Using Percentile:Leveraging percentiles to isolate outliers outside the interquartile range.Outliers are discarded if they stray beyond the confines of [q25−1.5×IQR,q75+1.5×IQR].
+In the intricate dance of data analysis, the ability to detect and navigate outliers is akin to mastering a subtle art. Employing techniques such as standard deviation, z-score, IQR, and percentiles empowers us to pinpoint and manage anomalies with finesse. The choice of method is nuanced, guided by the unique characteristics of the dataset and the specific demands of the analysis. By embracing the challenge of outlier detection, we fortify our data's integrity, ensuring it stands resilient and poised for insightful revelations.
+More Content:
+Outliers can have many causes, such as:
+Measurement or input error.
+Data corruption.
+True outlier observation.
+There is no precise way to define and identify outliers in general because of the specifics of each dataset. Instead, you, or a domain expert, must interpret the raw observations and decide whether a value is an outlier or not.
+Nevertheless, we can use statistical methods to identify observations that appear to be rare or unlikely given the available data. This does not mean that the values identified are outliers and should be removed. A good tip is to consider plotting the identified outlier values, perhaps in the context of non-outlier values to see if there are any systematic relationships or patterns to the outliers.
+
+Types of Outliers:
+
+Outliers can be of two types:
+
+1. Univariate
+2. Multivariate.
+
+Univariate outliers can be found when we look at the distribution of a single variable. Multivariate outliers are outliers in an n-dimensional space. In order to find them, you have to look at distributions in multi-dimensions.
+Let us understand this with an example. Let's say we are understanding the relationship between height and weight. Below, we have univariate and bivariate distribution for Height and Weight. Take a look at the box plot. We do not have any outliers (above and below 1.5 * IQR, a common method). Now look at the scatter plot. Here, we have two values below and one above the average in a specific segment of weight and height.
+
+Impact of Outliers on a Dataset:
+Outliers can drastically change the results of data analysis and statistical modeling. There are numerous unfavorable impacts of outliers in the dataset:
+It increases the error variance and reduces the power of statistical tests.
+If the outliers are non-randomly distributed, they can decrease normality.
+They can bias or influence estimates that may be of substantive interest.
+They can also impact the basic assumption of Regression, ANOVA, and other statistical model assumptions.
+To understand the impact deeply, let’s take an example to check what happens to a dataset with and without outliers in the dataset.
+
+
+Code : 
+For percentile 
+1. Import all the libraries 
+2. Load and clean the dataset 
+3. Finding the percentile
+4. Visualization 
+
+For Standard Deviation
+Download the dataset from : https://www.kaggle.com/datasets/spscientist/students-performance-in-exams
+
+1. Import libraries 
+2. Read the dataset 
+3. Standard deviation 
+4. Visualization 
+5. 
+6. 
+
+
+
+

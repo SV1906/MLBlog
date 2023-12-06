@@ -1,0 +1,98 @@
+---
+title: "Blog 3 :  Linear and nonlinear regression "
+author: "Sandhya Vinukonda"
+date: "2023-12-06"
+categories: [Machine Learning, Regression Analysis]
+# jupyter: python3
+---
+
+Introduction:
+In the dynamic world of Machine Learning, where predictions and decisions guide intelligent systems, Regression emerges as a powerful technique for understanding relationships between variables. In this blog, we embark on a journey through the realms of Linear and Non-Linear Regression, exploring their nuances, applications, and the impact they can have on predicting future outcomes.
+Linear Models:
+Linear models are characterized by having parameters in linear positions within the equation. The general form of a linear model is expressed as y=a+bx. Here, y is the dependent variable, x is the independent variable, and a and b are the parameters. Linear models can also include additional terms such as cx^2 or b/x, as long as the parameters are in linear positions.
+Examples of Linear Models:
+y = a+bx  line 
+y = a + bx + cx^2
+y = a + (b/x)
+Let's start coding :  
+ 
+CODE 
+
+Nonlinear Models:
+Nonlinear models are characterized by having parameters in nonlinear positions within the equation. The general form of a nonlinear model is expressed as : y=f(X,β)+ε where f is a nonlinear function of the independent variable(s) X and parameters β.
+Nonlinear models capture more complex relationships, allowing for curves, exponentials, logarithms, and other nonlinear patterns.
+Examples of Nonlinear Models:
+1. y = zx^b 
+2. y = ae^(bx)
+3. y = ae^(k/x)
+
+CODE 
+
+Plotting the Dataset
+This is what the datapoints look like. It kind of looks like an either logistic or exponential function. The growth starts off slow, then from 2005 on forward, the growth is very significant. And finally, it decelerate slightly in the 2010s.
+
+CODE 
+
+Choosing a model
+From an initial look at the plot, we determine that the logistic function could be a good approximation, since it has the property of starting with a slow growth, increasing growth in the middle, and then decreasing again at the end; as illustrated below:
+
+
+The formula for the logistic function is the following:
+IMAGE
+β1: Controls the curve's steepness,
+β2: Slides the curve on the x-axis.
+Building The Model
+Now, let's build our regression model and initialize its parameters.
+
+CODE 
+
+Lets look at a sample sigmoid line that might fit with the data:
+
+CODE 
+
+Our task here is to find the best parameters for our model. Lets first normalize our x and y:
+
+CODE 
+
+How we find the best parameters for our fit line?
+we can use curve_fit which uses non-linear least squares to fit our sigmoid function, to data. Optimal values for the parameters so that the sum of the squared residuals of sigmoid(xdata, *popt) - ydata is minimized.
+popt are our optimized parameters.
+
+CODE 
+
+Now we plot our resulting regression model.
+
+CODE 
+
+Pros of Nonlinear Models:
+1. Flexibility: Nonlinear models can represent intricate real-world processes that linear models may fail to capture.
+2. Realistic Predictions: They often provide more accurate predictions for complex relationships, such as growth phenomena.
+Cons of Nonlinear Models:
+1. Complex Calculus: Estimating parameters in nonlinear models can involve more intricate and computationally intensive methods compared to linear models.
+In summary, the key distinguishing factor between linear and nonlinear models is the position of parameters within the equations. Linear models have parameters in linear positions, while nonlinear models have parameters in nonlinear positions, allowing them to represent more complex relationships in real-world processes.
+
+Non-Linear with Linear Regression:
+Nonlinear regression modeling is akin to linear regression modeling in that both seek to track a particular response from a set of variables graphically. However, nonlinear models are more complex to develop due to the iterative nature of approximations, often involving trial-and-error. Methods like the Gauss-Newton method and the Levenberg-Marquardt method are employed in this process.
+Identifying Nonlinearity:
+Regression models that appear nonlinear might be intrinsically linear, and the curve estimation procedure helps identify the nature of functional relationships. Linear regression models can also form curves based on the form of the linear regression equation. Conversely, algebraic transformations can render a nonlinear equation as "intrinsically linear."
+Example:
+One practical example of nonlinear regression is predicting population growth over time. A scatterplot of changing population data may reveal a nonlinear relationship, necessitating the use of a nonlinear regression model. For instance, a logistic population growth model can estimate population for unmeasured periods and predict future growth.
+Considerations:
+Variables used in nonlinear regression should be quantitative, and accurate results depend on specifying the relationship between variables accurately. Good starting values are crucial for convergence and obtaining globally optimal solutions.
+←code→ 
+
+Comparison:
+Linear Regression:
+Well-suited for linear relationships.
+Simplicity and interpretability.
+Limited flexibility in capturing complex patterns.
+Non-Linear Regression:
+Accommodates non-linear relationships.
+Greater flexibility in capturing intricate patterns.
+May require more data to prevent overfitting.
+Conclusion:
+In the diverse landscape of Machine Learning, choosing between Linear and Non-Linear Regression depends on the nature of the data and the underlying relationships. Linear Regression provides a solid foundation for straightforward relationships, while Non-Linear Regression allows for a more intricate exploration of complex patterns. Understanding the strengths and limitations of each technique empowers data scientists to select the right tool for the predictive task at hand, contributing to more accurate and meaningful insights. As we navigate the regression terrain, the synergy of linear and non-linear approaches paves the way for comprehensive modeling and prediction capabilities in the world of Machine Learning.
+
+References : 
+1.https://www.kaggle.com/code/ibrahimbahbah/non-linear-regression-tutorial/notebook#II.-Non-Linear-Regression-example
+
