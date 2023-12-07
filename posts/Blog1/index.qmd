@@ -3,7 +3,7 @@ title: "Blog 1 : Probability theory and random variables"
 author: "Sandhya Vinukonda"
 date: "2023-12-06"
 categories: [Probability,Statistics]
-# jupyter: python3
+jupyter: python3
 ---
 
 ![](image.jpg) 
@@ -70,6 +70,7 @@ To understand the impact deeply, let’s take an example to check what happens t
 Code : 
 For percentile 
 1. Import all the libraries 
+
 2. Load and clean the dataset 
 3. Finding the percentile
 4. Visualization 
@@ -83,6 +84,26 @@ Download the dataset from : https://www.kaggle.com/datasets/spscientist/students
 4. Visualization 
 5. 
 6. 
+
+```{python}
+# Your Python code here
+print("Hello, Quarto!")
+
+import matplotlib.pyplot as plt
+import numpy as np
+# Define the sample space
+sample_space = ['Heads', 'Tails']
+# Assign equal probabilities to each outcome
+probabilities = [0.5, 0.5]
+
+# Visualize the probability distribution
+plt.bar(sample_space, probabilities, color='skyblue')
+plt.xlabel('Outcome')
+plt.ylabel('Probability')
+plt.title('Probability Distribution of a Fair Coin Toss')
+plt.show()
+```
+
 
 
 
