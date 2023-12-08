@@ -105,8 +105,10 @@ Examples of Nonlinear Models:
 
 Code : 
 ```{python}
-
-
+import pandas as pd
+path='china_gdp.csv'
+df = pd.read_csv(path)
+df.head(10)
 ```
 
 Plotting the Dataset
