@@ -68,8 +68,8 @@ building an RFMTC model to enhance understanding and prediction in blood donatio
 Let’s start coding : 
 1. Import Libraries 
 
- ```{python}
- import pandas as pd
+```{python}
+import pandas as pd
 import seaborn as sns
 from sklearn.metrics import precision_score, recall_score, f1_score, accuracy_score
 from sklearn.model_selection import train_test_split
@@ -78,13 +78,13 @@ from sklearn.metrics import confusion_matrix
 import matplotlib.pyplot as plt
 from sklearn.model_selection import cross_val_score,  cross_val_predict
 
- ```
+```
 
 2. Read data and clean it 
 
 ```{python}
 data = pd.read_csv(r"transfusion.csv")
-//To rename the columns so that it is easier to call it 
+# To rename the columns so that it is easier to call it 
 data=data.rename(columns={"whether he/she donated blood in March 2007":"Present"})
 data=data.rename(columns={"Recency (months)":"Recent"})
 data=data.rename(columns={"Frequency (times)":"Frequency"})

@@ -83,6 +83,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.datasets import load_wine
 import scipy.stats
+
 ```
 
 2. Load and clean the dataset 
@@ -135,12 +136,13 @@ Download the dataset from : https://www.kaggle.com/datasets/spscientist/students
 
 1. Import libraries 
 ```{python}
-Import pandas as pd
+import pandas as pd
 ```
 
 2. Read the dataset 
 ```{python}
-df_2 = pd.read_csv("C:/Users/Sandhya/Downloads/Student/StudentsPerformance.csv")df_2.head()
+df_2 = pd.read_csv("StudentsPerformance.csv")
+df_2.head()
 ```
 
 3. Standard deviation 
