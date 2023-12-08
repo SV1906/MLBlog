@@ -3,7 +3,7 @@ title: "Blog 3 :  Linear and nonlinear regression "
 author: "Sandhya Vinukonda"
 date: "2023-12-06"
 categories: [Machine Learning, Regression Analysis]
-# jupyter: python3
+jupyter: python3
 ---
 
 Introduction:
@@ -16,7 +16,84 @@ y = a + bx + cx^2
 y = a + (b/x)
 Let's start coding :  
  
-CODE 
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+# First line of plots
+plt.figure(figsize=(15, 5))
+# Plot 1
+plt.subplot(1, 3, 1)
+x1 = np.arange(-6.0, 6.0, 0.1)
+y1 = 3 * x1 + 2
+y1_noise = 2 * np.random.normal(size=x1.size)
+y1_data = y1 + y1_noise
+plt.scatter(x1, y1_data, color='blue', alpha=0.7, label='Data Points')
+plt.plot(x1, y1, color='red', label='Regression Line')
+plt.ylabel('Dependent Variable')
+plt.xlabel('Independent Variable')
+plt.title('Linear Regression')
+plt.legend()
+
+# Plot 2
+plt.subplot(1, 3, 2)
+x2 = np.arange(-6.0, 6.0, 0.1)
+y2 = 1 * (x2**3) + 2 * (x2**2) + 1 * x2 + 3
+y2_noise = 20 * np.random.normal(size=x2.size)
+y2_data = y2 + y2_noise
+plt.plot(x2, y2_data, 'bo')
+plt.plot(x2, y2, 'r') 
+plt.ylabel('Dependent Variable')
+plt.xlabel('Independent Variable')
+plt.title('Polynomial Regression')
+
+# Plot 3
+plt.subplot(1, 3, 3)
+x3 = np.arange(-6.0, 6.0, 0.1)
+y3 = np.power(x3, 2)
+y3_noise = 2 * np.random.normal(size=x3.size)
+y3_data = y3 + y3_noise
+plt.plot(x3, y3_data, 'bo')
+plt.plot(x3, y3, 'r') 
+plt.ylabel('Dependent Variable')
+plt.xlabel('Independent Variable')
+plt.title('Quadratic Regression')
+
+# Show the first line of plots
+plt.show()
+# Second line of plots
+plt.figure(figsize=(15, 5))
+# Plot 4
+plt.subplot(1, 3, 1)
+x4 = np.arange(-6.0, 6.0, 0.1)
+y4 = np.exp(x4)
+plt.plot(x4, y4, label='Exponential Curve')
+plt.ylabel('Dependent Variable')
+plt.xlabel('Independent Variable')
+plt.title('Exponential Regression')
+plt.legend()
+
+# Plot 5
+plt.subplot(1, 3, 2)
+x5 = np.arange(1.0, 10.0, 0.1)
+y5 = np.log(x5)
+plt.plot(x5, y5)
+plt.ylabel('Dependent Variable')
+plt.xlabel('Independent Variable')
+plt.title('Logarithmic Regression')
+
+# Plot 6
+plt.subplot(1, 3, 3)
+x6 = np.arange(-5.0, 5.0, 0.1)
+y6 = 1 - 4 / (1 + np.power(3, x6 - 2))
+plt.plot(x6, y6)
+plt.ylabel('Dependent Variable')
+plt.xlabel('Independent Variable')
+plt.title('Sigmoidal/Logistic Regression')
+
+# Show the second line of plots
+plt.show()
+
+```
 
 Nonlinear Models:
 Nonlinear models are characterized by having parameters in nonlinear positions within the equation. The general form of a nonlinear model is expressed as : y=f(X,β)+ε where f is a nonlinear function of the independent variable(s) X and parameters β.
@@ -26,16 +103,35 @@ Examples of Nonlinear Models:
 2. y = ae^(bx)
 3. y = ae^(k/x)
 
-CODE 
+Code : 
+```{python}
+
+
+```
 
 Plotting the Dataset
 This is what the datapoints look like. It kind of looks like an either logistic or exponential function. The growth starts off slow, then from 2005 on forward, the growth is very significant. And finally, it decelerate slightly in the 2010s.
 
-CODE 
+```{python}
+plt.figure(figsize=(8,5))
+x_data, y_data = (df["Year"].values, df["Value"].values)
+plt.plot(x_data, y_data, 'ro')
+plt.ylabel('GDP')
+plt.xlabel('Year')
+plt.show()
+```
 
 Choosing a model
 From an initial look at the plot, we determine that the logistic function could be a good approximation, since it has the property of starting with a slow growth, increasing growth in the middle, and then decreasing again at the end; as illustrated below:
 
+```{python}
+X = np.arange(-5,5.0, 0.1)
+Y = 1.0 / (1.0 + np.exp(-X))
+plt.plot(X,Y) 
+plt.ylabel('Dependent Variable')
+plt.xlabel('Indepdendent Variable')
+plt.show()
+```
 
 The formula for the logistic function is the following:
 IMAGE
@@ -44,25 +140,81 @@ IMAGE
 Building The Model
 Now, let's build our regression model and initialize its parameters.
 
-CODE 
+```{python}
+def sigmoid(x, Beta_1, Beta_2):
+     y = 1 / (1 + np.exp(-Beta_1*(x-Beta_2)))
+     return y
+```
 
 Lets look at a sample sigmoid line that might fit with the data:
 
-CODE 
+```{python}
+beta_1 = 0.10
+beta_2 = 1990.0
+
+#logistic function
+Y_pred = sigmoid(x_data, beta_1 , beta_2)
+
+#plot initial prediction against datapoints
+plt.plot(x_data, Y_pred*15000000000000.)
+plt.plot(x_data, y_data, 'ro')
+```
 
 Our task here is to find the best parameters for our model. Lets first normalize our x and y:
 
-CODE 
+```{python}
+# Lets normalize our data
+xdata =x_data/max(x_data)
+ydata =y_data/max(y_data)
+
+```
 
 How we find the best parameters for our fit line?
 we can use curve_fit which uses non-linear least squares to fit our sigmoid function, to data. Optimal values for the parameters so that the sum of the squared residuals of sigmoid(xdata, *popt) - ydata is minimized.
 popt are our optimized parameters.
 
-CODE 
+```{python}
+from scipy.optimize import curve_fit
+popt, pcov = curve_fit(sigmoid, xdata, ydata)
+#print the final parameters
+print(" beta_1 = %f, beta_2 = %f" % (popt[0], popt[1]))
+```
 
 Now we plot our resulting regression model.
 
-CODE 
+```{python}
+x = np.linspace(1960, 2015, 55)
+x = x/max(x)
+plt.figure(figsize=(8,5))
+y = sigmoid(x, *popt)
+plt.plot(xdata, ydata, 'ro', label='data')
+plt.plot(x,y, linewidth=3.0, label='fit')
+plt.legend(loc='best')
+plt.ylabel('GDP')
+plt.xlabel('Year')
+plt.show()
+```
+
+```{python}
+# split data into train/test
+msk = np.random.rand(len(df)) < 0.8
+train_x = xdata[msk]
+test_x = xdata[~msk]
+train_y = ydata[msk]
+test_y = ydata[~msk]
+
+# build the model using train set
+popt, pcov = curve_fit(sigmoid, train_x, train_y)
+
+# predict using test set
+y_hat = sigmoid(test_x, *popt)
+
+# evaluation
+print("Mean absolute error: %.2f" % np.mean(np.absolute(y_hat - test_y)))
+print("Residual sum of squares (MSE): %.2f" % np.mean((y_hat - test_y) ** 2))
+from sklearn.metrics import r2_score
+print("R2-score: %.2f" % r2_score(y_hat , test_y) )
+```
 
 Pros of Nonlinear Models:
 1. Flexibility: Nonlinear models can represent intricate real-world processes that linear models may fail to capture.

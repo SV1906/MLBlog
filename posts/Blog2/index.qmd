@@ -3,7 +3,7 @@ title: "Blog 2 : Clustering "
 author: "Sandhya Vinukonda"
 date: "2023-12-06"
 categories: [Machine Learning, Unsupervised Learning]
-# jupyter: python3
+jupyter: python3
 ---
 
 Let's talk about a fascinating part of machine learning and unsupervised learning. In this world, there's a standout technique known as clustering, where we work with data that doesn't come pre-labeled. Instead, we group similar data points into clusters based on common traits or patterns. This blog will take you through the basics of clustering, its types, and zoom in on two popular clustering buddies: K Means and Hierarchical Clustering.
@@ -77,8 +77,68 @@ Let’s Start Coding
 ![](KMeans_StepsOfCode.png)
 
 1. Import Libraries 
+```{python}
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.cluster import KMeans
+from sklearn import datasets
+from sklearn.preprocessing import StandardScaler
+from sklearn.metrics import silhouette_score
+```
+
+
 
 2. Read data and clean it 
+```{python}
+# Load the Iris dataset
+iris = datasets.load_iris()
+data = iris.data
+features = iris.feature_names
+target = iris.target
+
+# Check for missing values
+if np.any(np.isnan(data)):
+    print("Warning: Missing values found in the dataset.")
+    # Handle missing values as needed
+
+# Standardize the features (important for K-means)
+scaler = StandardScaler()
+data_scaled = scaler.fit_transform(data)
+
+# Check data types
+print("Data Types:", data_scaled.dtype)
+
+```
 
 3. Model : K Means 
+```{python}
+# Choose the number of clusters (K) - for the Iris dataset, K=3 makes sense due to the three classes
+k = 3
 
+# Apply K-means clustering
+kmeans = KMeans(n_clusters=k, random_state=42)
+kmeans.fit(data_scaled)
+
+# Get the cluster labels and centroids
+labels = kmeans.labels_
+centroids = kmeans.cluster_centers_
+
+# Add cluster labels to the original Iris dataset
+iris_df = pd.DataFrame(data_scaled, columns=features)
+iris_df['Cluster'] = labels
+
+# Visualize the clusters (using only the first two features for simplicity)
+plt.scatter(iris_df.iloc[:, 0], iris_df.iloc[:, 1], c=labels, cmap='viridis', edgecolors='k', s=50)
+plt.scatter(centroids[:, 0], centroids[:, 1], c='red', marker='X', s=200, label='Centroids')
+plt.title('K-means Clustering on Iris Dataset')
+plt.xlabel(features[0])
+plt.ylabel(features[1])
+plt.legend()
+plt.show()
+
+# Evaluate the clustering using silhouette score
+silhouette_avg = silhouette_score(data_scaled, labels)
+print(f"Silhouette Score: {silhouette_avg}")
+
+```

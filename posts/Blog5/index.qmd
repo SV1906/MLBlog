@@ -3,7 +3,7 @@ title: "Blog 5 : Anomaly/Outliers Detection"
 author: "Sandhya Vinukonda"
 date: "2023-12-06"
 categories: [Machine Learning, Anomaly Detection, Outlier Analysis]
-# jupyter: python3
+jupyter: python3
 ---
 
 In the intricate landscape of data analysis, outliers emerge as the unconventional elements that refuse to conform. These peculiar data points, standing out from the crowd, can introduce significant distortions to the overall dataset. Whether stemming from errors, inconsistencies, or simply unique observations, managing outliers becomes a pivotal step in the process of data cleaning and preprocessing. This careful curation ensures that our analytical endeavors are built upon trustworthy and representative data.
@@ -77,24 +77,104 @@ Code :
 For percentile 
 1. Import all the libraries 
 
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.datasets import load_wine
+import scipy.stats
+```
+
 2. Load and clean the dataset 
+```{python}
+# Load the Wine dataset
+wine = load_wine()
+data = wine.data
+feature_names = wine.feature_names
+```
 
 3. Finding the percentile
+```{python}
+# Function for outlier detection using Percentile
+def detect_outliers_percentile(data, feature_index, lower_percentile=5, upper_percentile=95):
+    feature_data = data[:, feature_index]
+    lower_bound = np.percentile(feature_data, lower_percentile)
+    upper_bound = np.percentile(feature_data, upper_percentile)
+    outliers = data[(feature_data < lower_bound) | (feature_data > upper_bound)]
+    return outliers
+# Example usage:
 
-4. Visualization 
+# Outlier detection using Percentile
+percentile_outliers = detect_outliers_percentile(data, feature_index=0)
+```
+
+4. Visualization
+```{python}
+
+# Function for plotting the data and outliers
+def plot_data_with_outliers(data, outliers, feature_name, method_name, title):
+    plt.figure(figsize=(10, 6))
+    sns.scatterplot(x=data[:, 0], y=data[:, 1], label='Inliers', color='green', alpha=0.7)
+    sns.scatterplot(x=outliers[:, 0], y=outliers[:, 1], label='Outliers', color='purple', marker='X', s=100)
+    plt.title(f'{title} ({method_name})', fontsize=16)
+    plt.xlabel(feature_name, fontsize=14)
+    plt.ylabel('Target', fontsize=14)
+    plt.xticks(fontsize=12)
+    plt.yticks(fontsize=12)
+    plt.legend(fontsize=12)
+    plt.show()
+
+
+# Plotting the original data and outliers detected using Percentile
+plot_data_with_outliers(data, percentile_outliers, feature_name=feature_names[0], method_name='Percentile', title='Outliers Detected')
+
+```
 
 For Standard Deviation
 Download the dataset from : https://www.kaggle.com/datasets/spscientist/students-performance-in-exams
 
-1. Import libraries
+1. Import libraries 
+```{python}
+Import pandas as pd
+```
 
 2. Read the dataset 
+```{python}
+df_2 = pd.read_csv("C:/Users/Sandhya/Downloads/Student/StudentsPerformance.csv")df_2.head()
+```
 
 3. Standard deviation 
+```{python}
+def out_std(df, column):
+    global lower,upper
+    # calculate the mean and standard deviation of the data frame
+    data_mean, data_std = df[column].mean(), df[column].std()
+    # calculate the cutoff value
+    cut_off = data_std * 3
+    # calculate the lower and upper bound value
+    lower, upper = data_mean - cut_off, data_mean + cut_off
+    print('The lower bound value is', lower)
+    print('The upper bound value is', upper)
+    # Calculate the number of records below and above lower and above bound value respectively
+    df1 = df[df[column] > upper]
+    df2 = df[df[column] < lower]
+    return print('Total number of outliers are', df1.shape[0]+ df2.shape[0])
+```
+
+```{python}
+out_std(df_2,'writing score')
+```
 
 4. Visualization 
+```{python}
+plt.figure(figsize = (10,5))
+sns.distplot(df_2['writing score'])
+```
 
-
-
-
+```{python}
+plt.figure(figsize = (10,5))
+sns.distplot(df_2['writing score'], kde=False)
+plt.axvspan(xmin = lower,xmax= df_2['writing score'].min(),alpha=0.2, color='red')
+plt.axvspan(xmin = upper,xmax= df_2['writing score'].max(),alpha=0.2, color='red')
+```
 

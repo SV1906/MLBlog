@@ -3,7 +3,7 @@ title: "Blog 4 : Classification "
 author: "Sandhya Vinukonda"
 date: "2023-12-06"
 categories: [Machine Learning, Supervised Learning]
-# jupyter: python3
+jupyter: python3
 ---
 
 Classification : The primary objective in supervised learning is to teach the model to predict the correct label or outcome for a given input. The model learns patterns and relationships in the training data, associating specific features with their corresponding labels.The training process involves exposing the model to the labeled training data, allowing it to adjust its internal parameters to make accurate predictions. Once trained, the model is then tested on new, unseen data (test data) to evaluate its generalization capabilities.The effectiveness of the supervised learning method is assessed by measuring its accuracy on the test data. Accuracy is calculated by comparing the model's predictions with the actual labels in the test set. This provides insights into how well the model performs on previously unseen examples.
@@ -68,25 +68,111 @@ building an RFMTC model to enhance understanding and prediction in blood donatio
 Let’s start coding : 
 1. Import Libraries 
 
-code 
+ ```{python}
+ import pandas as pd
+import seaborn as sns
+from sklearn.metrics import precision_score, recall_score, f1_score, accuracy_score
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import confusion_matrix
+import matplotlib.pyplot as plt
+from sklearn.model_selection import cross_val_score,  cross_val_predict
+
+ ```
 
 2. Read data and clean it 
 
-code 
+```{python}
+data = pd.read_csv(r"C:\Users\Sandhya\Downloads\transfusion.csv")
+//To rename the columns so that it is easier to call it 
+data=data.rename(columns={"whether he/she donated blood in March 2007":"Present"})
+data=data.rename(columns={"Recency (months)":"Recent"})
+data=data.rename(columns={"Frequency (times)":"Frequency"})
+data=data.rename(columns={"Monetary (c.c. blood)":"AmountOfBlood"})
+data=data.rename(columns={"Time (months)":"Months"})
+```
+
+```{python}
+
+data.info()
+```
+
+```{python}
+
+data.describe()
+
+```
 
 3. Visualization of the data 
 
-code
+```{python}
+sns.heatmap(data.corr(),cmap="YlGnBu")
+```
 
 4. Splitting data into train and test
 
-code
+```{python}
+#To define a variable 'features' that has all the columns except the boolean column 'Present'
+features=data.drop("Present", axis=1)
+#To define a variable 'target' that has the boolean column 'Present'
+target = data["Present"]
+
+X_train,X_test,Y_train,Y_test = train_test_split(features,target,test_size=0.3,random_state=101)
+```
 
 5. Model : Logistic Regression
 
-code
+```{python}
+#Using variable modelLR for logistic Regression
+modelLR = LogisticRegression(solver='lbfgs')
+#To fit this data of training set of X and Y to the model
+modelLR.fit(X_train, Y_train)
+```
 
 6. Evaluate the model 
+```{python}
+# modelLR = LogisticRegression()
+predLR = modelLR.predict(X_test)
 
-code 
+# Accuracy
+acc = accuracy_score(Y_test, predLR)
+print("Accuracy = {:.2f}".format(acc))
+
+# Precision
+precision = precision_score(Y_test, predLR)
+print("Precision = {:.2f}".format(precision))
+
+# Recall
+recall = recall_score(Y_test, predLR)
+print("Recall = {:.2f}".format(recall))
+
+# F1-score
+f1 = f1_score(Y_test, predLR)
+print("F1 Score = {:.2f}".format(f1))
+
+# Cross-validation
+y_pred_cv = cross_val_predict(modelLR, features, target, cv=10)
+
+# Cross-validation Accuracy
+result_LR = cross_val_score(modelLR, features, target, cv=10, scoring="accuracy")
+print("Cross val Score = {:.2f}".format(result_LR.mean()))
+
+# Cross-validation Precision
+precision_cv = precision_score(target, y_pred_cv)
+print("Cross val Precision = {:.2f}".format(precision_cv))
+
+# Cross-validation Recall
+recall_cv = recall_score(target, y_pred_cv)
+print("Cross val Recall = {:.2f}".format(recall_cv))
+
+# Cross-validation F1-score
+f1_cv = f1_score(target, y_pred_cv)
+print("Cross val F1 Score = {:.2f}".format(f1_cv))
+
+# Confusion Matrix
+plt.figure(figsize=(8, 6))
+sns.heatmap(confusion_matrix(target, y_pred_cv), cmap="summer", annot=True, fmt="3.0f")
+plt.title("Confusion Matrix (Cross-validated)")
+plt.show()
+```
 
